@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.cy.bean.Article" table="article">
+		<id name="arid" column="arid">
+			<generator class="native"></generator>
+		</id>
+		<property name="arnumber" column="arnumber" ></property>
+		<property name="artitle" column="artitle"></property>
+		<property name="arcontent" column="arcontent" type="text"></property>
+		<property name="artime" column="artime"></property>
+		<property name="aruser" column="aruser"></property>
+		<property name="arstate" column="arstate"></property>
+		<property name="clicks" column="clicks"></property>
+		<many-to-one name="catalog" class="com.cy.bean.Catalog" column="caid"></many-to-one>
+	</class>
+</hibernate-mapping>

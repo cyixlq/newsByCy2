@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="CyTeam" namespace="/" extends="struts-default">
+    	<interceptors>
+    		<interceptor name="logininceptor" class="com.cy.interceptor.LoginInterceptor"></interceptor>
+    	</interceptors>
+    	<action name="*_ManagerAction" class="managerAction" method="{1}">
+    		<!-- 自定义的登录拦截器 -->
+    		<interceptor-ref name="logininceptor">
+    			<param name="excludeMethods">login</param>
+    		</interceptor-ref>
+    		<!-- 手动启动自带的拦截器 -->
+    		<interceptor-ref name="defaultStack"></interceptor-ref>
+    		<!-- 结果页面跳转配置 -->
+    		<result name="login_suc" >/background/index.jsp</result>
+    		<result name="login_fail">/manager_login.jsp</result>
+    		<result name="findall">/background/Managerfindall.jsp</result>
+    		<result name="singout">/manager_login.jsp</result>
+    		<result name="findall_manager" type="redirectAction">findall_ManagerAction</result>
+    		<result name="edit_manager">/background/Manager_edit.jsp</result>
+    	</action>
+    	
+    	<action name="*_CatalogAction" class="catalogAction" method="{1}">
+    		<!-- 自定义的登录拦截器 -->
+    		<interceptor-ref name="logininceptor"></interceptor-ref>
+    		<!-- 手动启动自带的拦截器 -->
+    		<interceptor-ref name="defaultStack"></interceptor-ref>
+    		<!-- 结果页面跳转配置 -->
+    		<result name="findall">/background/Catalog_findall.jsp</result>
+    		<result name="findall_catalog"  type="redirectAction">findall_CatalogAction</result>
+    		<result name="edit_catalog">/background/Catalog_edit.jsp</result>
+    	</action>
+    	
+    	<action name="*_ArticleAction" class="articleAction" method="{1}">
+    		<!-- 自定义的登录拦截器 -->
+    		<interceptor-ref name="logininceptor"></interceptor-ref>
+    		<!-- 手动启动自带的拦截器 -->
+    		<interceptor-ref name="defaultStack"></interceptor-ref>
+    		<!-- 结果页面跳转配置 -->
+    		<result name="findall">/background/Article_findall.jsp</result>
+    		<result name="findall_article" type="redirectAction">findall_ArticleAction</result>
+    		<result name="edit_article">/background/Article_edit.jsp</result>
+    	</action>
+    	
+    	<action name="*_IndexAction" class="indexAction" method="{1}">
+    		<result name="findall">/index.jsp</result>
+    		<result name="article">/Article.jsp</result>
+    	</action>
+    	
+    </package>
+</struts>
